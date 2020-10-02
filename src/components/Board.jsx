@@ -34,6 +34,21 @@ export default function Board() {
     let newBoard = [...boardState];
     if (newBoard[i][j] === "") newBoard[i][j] = "x";
     setBoardState(newBoard);
+
+    // remove available cells count
+    game.available.pop();
+
+    if (!!hasWon()) resetGame();
+  };
+
+  const hasWon = () => {
+    return game.checkWinner();
+  };
+
+  const resetGame = () => {
+    let newGame = new Game();
+    setGame(newGame);
+    setBoardState(newGame.board);
   };
 
   const renderCellState = (i, j) => {
