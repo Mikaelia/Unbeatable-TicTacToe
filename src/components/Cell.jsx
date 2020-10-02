@@ -31,9 +31,9 @@ const StyledCell = styled.div`
     justify-items: center;
   }
 `;
-export default function Cell({ children }) {
+export default function Cell({ children, onClick }) {
   return (
-    <StyledCell>
+    <StyledCell onClick={onClick}>
       <div className="grid-cell">{children}</div>
     </StyledCell>
   );

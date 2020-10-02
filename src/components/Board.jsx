@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Cell from "./Cell";
 import O from "./O";
 import X from "./X";
+import Game from "../utils/game";
 
 import styled from "styled-components";
 
@@ -12,31 +13,46 @@ const GameBoard = styled.div`
   grid-gap: 1rem;
   align-items: center;
   justify-items: center;
-  height: 30rem;
-  width: 30rem;
+  height: 20rem;
+  width: 20rem;
   padding: 2rem;
   background: ${(props) => props.theme.colors.gray};
   border-radius: 1rem;
   box-shadow: inset 0px 0px 4px 4px rgb(0, 0, 0, 0.4);
+
+  @media (min-width: 600px) {
+    height: 30rem;
+    width: 30rem;
+  }
 `;
 
 export default function Board() {
-  const handleSelect = (e) => {
-    console.log("i am clicked");
+  const [game, setGame] = useState(new Game());
+  const [boardState, setBoardState] = useState(game.board);
+
+  const handleSelect = (i, j) => {
+    let newBoard = [...boardState];
+    if (newBoard[i][j] === "") newBoard[i][j] = "x";
+    setBoardState(newBoard);
   };
 
-  const genCells = () => {
+  const renderCellState = (i, j) => {
+    if (boardState[i][j] === "x") return <X></X>;
+    if (boardState[i][j] === "o") return <O></O>;
+  };
+
+  const renderCells = () => {
     let cells = [];
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         cells.push(
-          <Cell onClick={(e) => handleSelect(e)} key={`${i}|${j}`}>
-            {(i % 2 === 0 && <X></X>) || <O></O>}
+          <Cell onClick={() => handleSelect(i, j)} key={`${i}|${j}`}>
+            {renderCellState(i, j)}
           </Cell>
         );
       }
     }
     return cells;
   };
-  return <GameBoard>{genCells()}</GameBoard>;
+  return <GameBoard>{renderCells()}</GameBoard>;
 }
