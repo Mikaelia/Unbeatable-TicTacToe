@@ -1,6 +1,6 @@
 import React from "react";
 import Theme from "./Theme";
-import Board from "./components/Board";
+import TicTacToe from "./components/TicTacToe";
 import "./App.css";
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <Theme>
       <StyledApp className="App">
-        <Board></Board>
+        <TicTacToe></TicTacToe>
       </StyledApp>
     </Theme>
   );

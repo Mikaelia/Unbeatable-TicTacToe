@@ -1,49 +1,41 @@
+import Board from "./board";
+import Computer from "./computer";
+
 class Game {
   constructor() {
-    this.board = [
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""],
-    ];
-    this.available = [[""], [""], [""], [""], [""], [""], [""], [""], [""]];
+    this.board = new Board();
+    this.computer = new Computer();
+    this.human = { identifier: "x" };
+    this.winner = null;
   }
 
-  threeEqual(a, b, c) {
-    return a === b && b === c && a !== "";
+  get boardState() {
+    return this.board.board;
   }
 
-  checkWinner() {
-    let winner = null;
-    // horizontal
-    for (let i = 0; i < 3; i++) {
-      if (
-        this.threeEqual(this.board[i][0], this.board[i][1], this.board[i][2])
-      ) {
-        winner = this.board[i][0];
-      }
-    }
+  isWinner(player) {
+    return this.board.checkWin(player);
+  }
 
-    // vertical
-    for (let i = 0; i < 3; i++) {
-      if (
-        this.threeEqual(this.board[0][i], this.board[1][i], this.board[2][i])
-      ) {
-        winner = this.board[0][i];
-      }
-    }
+  reset(winner) {
+    this.board = new Board();
+  }
 
-    // diagonals
-    if (this.threeEqual(this.board[0][0], this.board[1][1], this.board[2][2])) {
-      winner = this.board[0][0];
+  turn(index) {
+    // checking if cell not already clicked
+    if (this.boardState[index] === index && !this.winner) {
+      this.playerMove(index, this.human.identifier);
+      // if a tie hasn't occured or the board has not been reset
+      if (this.board.tie()) this.winner = "tie";
+      else if (this.board.emptyCells().length !== 9)
+        this.playerMove(this.computer.bestMove(this), this.computer.identifier);
     }
+  }
 
-    if (this.threeEqual(this.board[2][0], this.board[1][1], this.board[0][2])) {
-      winner = this.board[2][0];
-    }
-
-    if (this.available.length === 0 && this.winner === null) return "tie";
-    // returns 'x', 'o'
-    return winner;
+  playerMove(index, player) {
+    this.board.selectCell(index, player);
+    let gameWon = this.isWinner(player);
+    if (gameWon) this.winner = gameWon.player;
   }
 }
 
