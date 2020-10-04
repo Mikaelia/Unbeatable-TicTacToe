@@ -5,26 +5,29 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  border: none;
-  outline: none;
   height: 5rem;
   width: 5rem;
+  // Outline will need to be set in production for a11y
+  outline: none;
+  border: none;
+  box-shadow: 10px 10px 25px 8px rgb(17, 25, 104, 0.2);
   border-radius: 50rem;
   transition: transform 0.3s ease;
-  box-shadow: 10px 10px 25px 8px rgb(17, 25, 104, 0.2);
+  cursor: pointer;
 
   :active {
     transform: translateY(10px);
   }
+
   svg {
     transition: transform 0.3s ease;
   }
+
   svg:hover {
     transform: rotate(360deg);
 
     g {
-      fill: #e5689e;
+      fill: ${(props) => props.theme.colors.pink};
     }
   }
 `;

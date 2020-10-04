@@ -1,3 +1,1 @@
-TODO
-[ ] Tie condition
-[ ] Computer select move
+# Unbeatable TicTacToe

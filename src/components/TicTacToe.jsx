@@ -8,21 +8,27 @@ import O from "./O";
 import X from "./X";
 
 const StyledTicTacToe = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  margin-bottom: 2rem;
 `;
 
 const StyledMessage = styled.h1`
-  position: absolute;
-  top: 3rem;
-  margin: 0;
   color: white;
-  font-size: 5rem;
+  font-size: 3.5rem;
+  line-height: 4.5rem;
   font-weight: 200;
   font-family: "Poppins", sans-serif;
   text-shadow: 2px 2px rgb(17, 25, 104, 0.2);
+
+  @media (min-width: 600px) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
 `;
 
 const StyledGameBoard = styled.div`
@@ -32,18 +38,23 @@ const StyledGameBoard = styled.div`
   grid-gap: 1rem;
   align-items: center;
   justify-items: center;
-  height: 20rem;
-  width: 20rem;
-  margin: 10rem 0 3rem 0;
+  height: 15rem;
+  width: 15rem;
+  margin: 4rem 0 3rem 0;
   padding: 2rem;
   background: ${(props) => props.theme.colors.gray};
   border-radius: 1rem;
   box-shadow: 10px 10px 25px 8px rgb(17, 25, 104, 0.2),
     inset 0px 0px 10px 5px rgb(17, 25, 104, 0.01);
 
+  @media (min-width: 500px) {
+    height: 20rem;
+    width: 20rem;
+  }
+
   @media (min-width: 600px) {
-    height: 30rem;
-    width: 30rem;
+    height: 25rem;
+    width: 25rem;
     align-self: center;
   }
 `;

@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledX = styled.div`
+  position: relative;
   height: 3.5rem;
   width: 3.5rem;
-  position: relative;
 
   :before {
     content: "";
