@@ -11,16 +11,16 @@ const StyledCell = styled.div`
   );
   width: 100%;
   height: 100%;
-  box-shadow: 3px 3px 7px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 7px 2px rgba(17, 25, 104, 0.15);
   transition: all 0.4s ease;
   cursor: pointer;
 
   :hover {
-    box-shadow: 3px 8px 7px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 8px 7px 2px rgba(17, 25, 104, 0.2);
   }
 
   :active {
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 0px 0px rgba(17, 25, 104, 0.05);
   }
 
   .grid-cell {

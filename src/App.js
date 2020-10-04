@@ -9,7 +9,7 @@ const StyledApp = styled.div`
   align-items: center;
   justify-items: center;
   height: 100vh;
-  background: #182039;
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
 `;
 
 function App() {
