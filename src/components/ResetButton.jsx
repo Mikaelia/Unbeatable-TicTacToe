@@ -14,6 +14,7 @@ const StyledButton = styled.button`
   border-radius: 50rem;
   transition: transform 0.3s ease;
   cursor: pointer;
+  background-color: ${(props) => props.theme.colors.gray};
 
   :active {
     transform: translateY(10px);
