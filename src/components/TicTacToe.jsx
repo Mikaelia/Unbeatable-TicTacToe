@@ -30,6 +30,7 @@ const StyledMessage = styled.h1`
     line-height: 5rem;
   }
 `;
+StyledMessage.displayName = "GameMessage";
 
 const StyledGameBoard = styled.div`
   display: grid;
@@ -84,8 +85,13 @@ export default function TicTacToe() {
   const renderCells = () => {
     const cells = [];
     for (let i = 0; i < BOARD_AREA; i++) {
+      const rowLength = Math.sqrt(BOARD_AREA);
       cells.push(
-        <Cell onClick={() => handleSelect(i)} key={`${i}`}>
+        <Cell
+          position={`${i % rowLength},${Math.floor(i / rowLength)}`}
+          onClick={() => handleSelect(i)}
+          key={`${i}`}
+        >
           {renderCellState(i)}
         </Cell>
       );
@@ -108,9 +114,9 @@ export default function TicTacToe() {
       default:
         message = "Play!";
     }
+
     return <StyledMessage>{message}</StyledMessage>;
   };
-
   return (
     <StyledTicTacToe data-testid="game">
       {renderWinMessage()}
