@@ -1,7 +1,10 @@
+import { BOARD_AREA } from "../constants";
+
 class Board {
   constructor() {
     // Creates array of values numbering 0-8
-    this.board = Array.from(Array(9).keys());
+    this.board = Array.from(Array(BOARD_AREA).keys());
+    // Ideally would generate these automatically based on board area
     this.winCombos = [
       [0, 1, 2],
       [3, 4, 5],

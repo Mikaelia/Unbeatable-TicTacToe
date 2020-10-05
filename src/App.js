@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import Theme from "./Theme";
 import TicTacToe from "./components/TicTacToe";
-import styled from "styled-components";
 
 const StyledApp = styled.div`
   display: grid;
@@ -18,7 +18,7 @@ function App() {
   return (
     <Theme>
       <StyledApp className="App">
-        <TicTacToe></TicTacToe>
+        <TicTacToe />
       </StyledApp>
     </Theme>
   );

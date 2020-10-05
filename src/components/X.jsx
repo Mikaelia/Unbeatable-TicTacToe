@@ -32,6 +32,6 @@ const StyledX = styled.div`
     transform: rotate(135deg);
   }
 `;
-export default function X() {
-  return <StyledX></StyledX>;
-}
+const X = () => <StyledX data-testid={"x-indicator"} />;
+
+export default X;

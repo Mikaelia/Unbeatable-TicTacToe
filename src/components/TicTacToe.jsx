@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { HUMANPLAYER, COMPUTERPLAYER } from "../constants";
+import { HUMAN_PLAYER, COMPUTER_PLAYER, BOARD_AREA } from "../constants";
 import Game from "../utils/game";
 import Cell from "./Cell";
 import ResetButton from "./ResetButton";
@@ -65,25 +65,25 @@ export default function TicTacToe() {
   const [boardState, setBoardState] = useState(game.boardState);
 
   const handleSelect = (index) => {
-    if (boardState[index] === index) game.takeTurn(index, HUMANPLAYER);
+    if (boardState[index] === index) game.takeTurn(index, HUMAN_PLAYER);
 
     setBoardState([...game.boardState]);
   };
 
   const resetGame = () => {
-    let newGame = new Game();
+    const newGame = new Game();
     setGame(newGame);
     setBoardState(newGame.boardState);
   };
 
   const renderCellState = (index) => {
-    if (boardState[index] === HUMANPLAYER) return <X></X>;
-    if (boardState[index] === COMPUTERPLAYER) return <O></O>;
+    if (boardState[index] === HUMAN_PLAYER) return <X />;
+    if (boardState[index] === COMPUTER_PLAYER) return <O />;
   };
 
   const renderCells = () => {
-    let cells = [];
-    for (let i = 0; i < 9; i++) {
+    const cells = [];
+    for (let i = 0; i < BOARD_AREA; i++) {
       cells.push(
         <Cell onClick={() => handleSelect(i)} key={`${i}`}>
           {renderCellState(i)}
@@ -94,14 +94,25 @@ export default function TicTacToe() {
   };
 
   const renderWinMessage = () => {
-    let message = "Play!";
-    if (game.winner === COMPUTERPLAYER) message = "Computer Wins!";
-    if (game.winner === HUMANPLAYER) message = "You Win!";
-    if (game.winner === "tie") message = "Tie!";
+    let message;
+    switch (game.winner) {
+      case COMPUTER_PLAYER:
+        message = "Computer Wins!";
+        break;
+      case HUMAN_PLAYER:
+        message = "You win!";
+        break;
+      case "tie":
+        message = "Tie!";
+        break;
+      default:
+        message = "Play!";
+    }
     return <StyledMessage>{message}</StyledMessage>;
   };
+
   return (
-    <StyledTicTacToe>
+    <StyledTicTacToe data-testid="game">
       {renderWinMessage()}
       <StyledGameBoard>{renderCells()}</StyledGameBoard>
       <ResetButton onClick={() => resetGame()}>Reset</ResetButton>

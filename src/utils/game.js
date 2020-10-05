@@ -1,11 +1,11 @@
 import Board from "./board";
-import { HUMANPLAYER, COMPUTERPLAYER } from "../constants";
+import { HUMAN_PLAYER, COMPUTER_PLAYER } from "../constants";
 
 class Game {
   constructor() {
     this.board = new Board();
-    this.humanPlayer = { identifier: HUMANPLAYER };
-    this.computerPlayer = { identifier: COMPUTERPLAYER };
+    this.humanPlayer = { identifier: HUMAN_PLAYER };
+    this.computerPlayer = { identifier: COMPUTER_PLAYER };
     this.winner = null;
   }
 
@@ -22,7 +22,6 @@ class Game {
 
       // If there are no unvisited cells and win has not occured...
       if (!this.board.unvisitedCells().length) {
-        console.log(this.winner);
         this.winner = "tie";
       } else {
         player = this.computerPlayer.identifier;
@@ -43,9 +42,10 @@ class Game {
   // Checks for humanPlayer or computerPlayer win
   checkWinner(currentBoard, player) {
     // Gather all player's moves into single array
-    let moves = currentBoard.board.reduce((arr, val, idx) => {
-      return val === player ? arr.concat(idx) : arr;
-    }, []);
+    let moves = currentBoard.board.reduce(
+      (arr, val, idx) => (val === player ? arr.concat(idx) : arr),
+      []
+    );
 
     // Iterate through every win combo. If every element of a combo included in
     // moves, player has won.

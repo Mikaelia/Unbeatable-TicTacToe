@@ -23,7 +23,7 @@ const StyledCell = styled.div`
     box-shadow: 0px 0px 0px 0px rgba(17, 25, 104, 0.05);
   }
 
-  .grid-cell {
+  > div {
     display: grid;
     align-items: center;
     justify-items: center;
@@ -31,10 +31,10 @@ const StyledCell = styled.div`
     width: 100%;
   }
 `;
-export default function Cell({ children, onClick }) {
-  return (
-    <StyledCell onClick={onClick}>
-      <div className="grid-cell">{children}</div>
-    </StyledCell>
-  );
-}
+const Cell = ({ children, onClick }) => (
+  <StyledCell onClick={onClick}>
+    <div data-testid="board-cell">{children}</div>
+  </StyledCell>
+);
+
+export default Cell;

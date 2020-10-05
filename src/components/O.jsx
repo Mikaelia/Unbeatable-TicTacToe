@@ -7,6 +7,6 @@ const StyledO = styled.div`
   border-radius: 50%;
   border: 3.5px solid ${(props) => props.theme.colors.pink};
 `;
-export default function O() {
-  return <StyledO></StyledO>;
-}
+const O = () => <StyledO data-testid={"o-indicator"} />;
+
+export default O;
