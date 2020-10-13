@@ -59,7 +59,7 @@ class Game {
     return winner;
   }
 
-  // Minimax algorithm to determine best move
+  // Minimax algorithm to determine best move. Source: https://www.freecodecamp.org/news/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37/
   minimax(newBoard, player) {
     let unvisitedCells = newBoard.unvisitedCells();
 

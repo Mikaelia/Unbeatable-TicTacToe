@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ResetButton from "./ResetButton";
-import Theme from "./Theme";
+import Theme from "../Theme";
 
 describe("<ResetButton />", () => {
   const noOp = () => {};

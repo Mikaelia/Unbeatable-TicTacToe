@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import O from "./O";
-import Theme from "./Theme";
+import Theme from "../Theme";
 
 describe("<O/>", () => {
   const wrapper = () =>
